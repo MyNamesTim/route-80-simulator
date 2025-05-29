@@ -1,0 +1,57 @@
+[gd_resource type="TileSet" load_steps=3 format=3 uid="uid://iuhxqth250g8"]
+
+[ext_resource type="Texture2D" uid="uid://3gqvop028h3o" path="res://sprites/roads.png" id="1_ug40q"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c2kad"]
+texture = ExtResource("1_ug40q")
+21:0/size_in_atlas = Vector2i(2, 4)
+21:0/0 = 0
+17:0/size_in_atlas = Vector2i(2, 4)
+17:0/0 = 0
+13:0/size_in_atlas = Vector2i(2, 2)
+13:0/0 = 0
+13:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(14, -16, 16, -16, 16, 16, 14, 16)
+13:0/0/physics_layer_0/polygon_1/points = PackedVector2Array(-14, -16, -14, 16, -16, 16, -16, -16)
+13:5/size_in_atlas = Vector2i(2, 2)
+13:5/0 = 0
+17:5/size_in_atlas = Vector2i(2, 2)
+17:5/0 = 0
+21:5/size_in_atlas = Vector2i(2, 2)
+21:5/0 = 0
+25:4/size_in_atlas = Vector2i(2, 2)
+25:4/0 = 0
+25:6/size_in_atlas = Vector2i(2, 2)
+25:6/0 = 0
+24:1/size_in_atlas = Vector2i(4, 2)
+24:1/0 = 0
+28:1/size_in_atlas = Vector2i(4, 2)
+28:1/0 = 0
+29:4/size_in_atlas = Vector2i(2, 2)
+29:4/0 = 0
+29:6/size_in_atlas = Vector2i(2, 2)
+29:6/0 = 0
+0:0/size_in_atlas = Vector2i(8, 4)
+0:0/0 = 0
+9:5/size_in_atlas = Vector2i(2, 2)
+9:5/0 = 0
+5:5/size_in_atlas = Vector2i(2, 2)
+5:5/0 = 0
+1:5/size_in_atlas = Vector2i(2, 2)
+1:5/0 = 0
+6:8/size_in_atlas = Vector2i(1, 4)
+6:8/0 = 0
+5:8/size_in_atlas = Vector2i(1, 4)
+5:8/0 = 0
+1:9/size_in_atlas = Vector2i(2, 1)
+1:9/0 = 0
+1:10/size_in_atlas = Vector2i(2, 1)
+1:10/0 = 0
+19:0/size_in_atlas = Vector2i(2, 2)
+19:0/0 = 0
+8:8/size_in_atlas = Vector2i(2, 2)
+8:8/0 = 0
+8:8/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, -16, 16, 16, 16, 16, -16)
+
+[resource]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_c2kad")
