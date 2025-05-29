@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://com0fuw6hioix"]
+
+[ext_resource type="Script" uid="uid://bmxwhc6l4n52i" path="res://button.gd" id="1_lti8b"]
+[ext_resource type="FontFile" uid="uid://bhynwbdxqh58o" path="res://KiwiSoda.ttf" id="1_ouk20"]
+
+[sub_resource type="Gradient" id="Gradient_vsb4k"]
+interpolation_mode = 2
+colors = PackedColorArray(0, 0.41933, 0.662189, 1, 0.155684, 2.71457e-05, 0.596292, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lti8b"]
+gradient = SubResource("Gradient_vsb4k")
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = SubResource("GradientTexture2D_lti8b")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 358.0
+offset_top = 383.0
+offset_right = 1446.0
+offset_bottom = 891.0
+scale = Vector2(0.35, 0.35)
+theme_override_fonts/font = ExtResource("1_ouk20")
+theme_override_font_sizes/font_size = 500
+text = "Play"
+flat = true
+icon_alignment = 1
+script = ExtResource("1_lti8b")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 104.0
+offset_top = 94.0
+offset_right = 252.0
+offset_bottom = 117.0
+scale = Vector2(6, 6)
+theme_override_fonts/font = ExtResource("1_ouk20")
+text = "Route 80 Simulator"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="button_up" from="Button" to="Button" method="_on_button_up"]

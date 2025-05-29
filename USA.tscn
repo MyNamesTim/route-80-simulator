@@ -1,0 +1,266 @@
+[gd_scene load_steps=16 format=4 uid="uid://8lcbt25t7rsj"]
+
+[ext_resource type="Texture2D" uid="uid://c1y6uuj8j80n4" path="res://sprites/car.png" id="1_ef721"]
+[ext_resource type="Script" uid="uid://beq2oq1p3sms6" path="res://car_movement.gd" id="1_jrtrd"]
+[ext_resource type="Texture2D" uid="uid://3gqvop028h3o" path="res://sprites/roads.png" id="3_c2kad"]
+[ext_resource type="TileSet" uid="uid://iuhxqth250g8" path="res://sprites/straight_road_usa.tres" id="3_x4qta"]
+[ext_resource type="Texture2D" uid="uid://be3mvcx11xt5n" path="res://sprites/enemy_car.png" id="4_ni0vs"]
+[ext_resource type="Texture2D" uid="uid://dm0t80goytl0c" path="res://sprites/broken_glass.png" id="5_mg4mv"]
+[ext_resource type="Script" uid="uid://dvdgfmfwdrio6" path="res://menu_button.gd" id="6_8gnqp"]
+[ext_resource type="FontFile" uid="uid://bhynwbdxqh58o" path="res://KiwiSoda.ttf" id="8_u3gmq"]
+
+[sub_resource type="Curve" id="Curve_u3gmq"]
+_limits = [-500.0, 500.0, 0.0, 1.0]
+_data = [Vector2(0, 500), 0.0, 0.0, 0, 0, Vector2(1, -500), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_x4qta"]
+_limits = [-360.0, 360.0, 0.0, 1.0]
+_data = [Vector2(0, 360), 0.0, 0.0, 0, 0, Vector2(1, -360), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Gradient" id="Gradient_x4qta"]
+colors = PackedColorArray(1, 0.383333, 0, 1, 0.252009, 0.0686735, 0, 1)
+
+[sub_resource type="Curve" id="Curve_x1qog"]
+_limits = [0.0, 200.0, 0.0, 1.0]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1e-05, 200), 0.0, 0.0, 0, 0, Vector2(1, 1), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ni0vs"]
+texture = ExtResource("3_c2kad")
+21:0/size_in_atlas = Vector2i(2, 4)
+21:0/0 = 0
+17:0/size_in_atlas = Vector2i(2, 4)
+17:0/0 = 0
+13:0/size_in_atlas = Vector2i(2, 2)
+13:0/0 = 0
+13:5/size_in_atlas = Vector2i(2, 2)
+13:5/0 = 0
+17:5/size_in_atlas = Vector2i(2, 2)
+17:5/0 = 0
+21:5/size_in_atlas = Vector2i(2, 2)
+21:5/0 = 0
+25:4/size_in_atlas = Vector2i(2, 2)
+25:4/0 = 0
+25:6/size_in_atlas = Vector2i(2, 2)
+25:6/0 = 0
+24:1/size_in_atlas = Vector2i(4, 2)
+24:1/0 = 0
+28:1/size_in_atlas = Vector2i(4, 2)
+28:1/0 = 0
+29:4/size_in_atlas = Vector2i(2, 2)
+29:4/0 = 0
+29:6/size_in_atlas = Vector2i(2, 2)
+29:6/0 = 0
+0:0/size_in_atlas = Vector2i(8, 4)
+0:0/0 = 0
+9:5/size_in_atlas = Vector2i(2, 2)
+9:5/0 = 0
+5:5/size_in_atlas = Vector2i(2, 2)
+5:5/0 = 0
+1:5/size_in_atlas = Vector2i(2, 2)
+1:5/0 = 0
+6:8/size_in_atlas = Vector2i(1, 4)
+6:8/0 = 0
+5:8/size_in_atlas = Vector2i(1, 4)
+5:8/0 = 0
+1:9/size_in_atlas = Vector2i(2, 1)
+1:9/0 = 0
+1:10/size_in_atlas = Vector2i(2, 1)
+1:10/0 = 0
+19:0/size_in_atlas = Vector2i(2, 2)
+19:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_mg4mv"]
+sources/0 = SubResource("TileSetAtlasSource_ni0vs")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_x4qta"]
+size = Vector2(2177, 276.918)
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Car" type="CharacterBody2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(160, 584)
+
+[node name="CarArea" type="Area2D" parent="Car"]
+unique_name_in_owner = true
+script = ExtResource("1_jrtrd")
+
+[node name="CarSprite" type="Sprite2D" parent="Car/CarArea"]
+scale = Vector2(10, 10)
+texture = ExtResource("1_ef721")
+
+[node name="CarCollider" type="CollisionPolygon2D" parent="Car/CarArea"]
+polygon = PackedVector2Array(-60, -150, -60, -160, 60, -160, 60, -150, 80, -150, 80, -140, 90, -140, 90, -120, 100, -120, 100, -110, 130, -110, 130, -100, 140, -100, 140, -90, 130, -90, 130, -80, 120, -80, 120, -70, 100, -70, 100, 130, 90, 130, 90, 140, 80, 140, 80, 150, 60, 150, 60, 160, -60, 160, -60, 150, -80, 150, -80, 140, -90, 140, -90, 130, -100, 130, -100, -70, -120, -70, -120, -80, -130, -80, -130, -90, -140, -90, -140, -100, -130, -100, -130, -110, -100, -110, -100, -120, -90, -120, -90, -140, -80, -140, -80, -150)
+
+[node name="GameOverTimer" type="Timer" parent="Car/CarArea"]
+unique_name_in_owner = true
+wait_time = 1.5
+one_shot = true
+
+[node name="Explosion" type="CPUParticles2D" parent="Car/CarArea"]
+unique_name_in_owner = true
+emitting = false
+amount = 100
+one_shot = true
+randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 128.0
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_max = 1000.0
+angular_velocity_min = -720.0
+angular_velocity_max = -720.0
+orbit_velocity_curve = SubResource("Curve_u3gmq")
+angle_min = -360.0
+angle_max = 360.0
+angle_curve = SubResource("Curve_x4qta")
+scale_amount_min = 0.0
+scale_amount_max = 200.0
+color = Color(0.920192, 0.495827, 0, 1)
+color_ramp = SubResource("Gradient_x4qta")
+anim_speed_max = 128.0
+anim_speed_curve = SubResource("Curve_x1qog")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
+zoom = Vector2(0.25, 0.25)
+
+[node name="Straight Road" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="StraightRoadTileMap" type="TileMapLayer" parent="Straight Road"]
+unique_name_in_owner = true
+z_index = -2
+position = Vector2(270, 0)
+scale = Vector2(35, 35)
+tile_map_data = PackedByteArray("AAD//wAAAAANAAAAAAD///7/AAANAAAAAAD///3/AAANAAAAAAACAAEAAAATAAAAAAADAAEAAAATAAAAAAAEAAEAAAATAAAAAAAFAAEAAAATAAAAAAAGAAEAAAATAAAAAAAHAAEAAAATAAAAAAAIAAEAAAATAAAAAAAIAAAAAAATAAAAAAAIAP//AAATAAAAAAAIAP7/AAATAAAAAAAHAP7/AAATAAAAAAAGAP7/AAATAAAAAAAFAP7/AAATAAAAAAAEAP7/AAATAAAAAAADAP7/AAATAAAAAAACAP7/AAATAAAAAAACAAAAAAATAAAAAAADAAAAAAATAAAAAAAEAAAAAAATAAAAAAAEAP//AAATAAAAAAAFAP//AAATAAAAAAAGAP//AAATAAAAAAAHAP//AAATAAAAAAD8/wAAAAATAAAAAAD7/wEAAAATAAAAAAD7/wIAAAATAAAAAAD4/wIAAAATAAAAAAD4/wEAAAATAAAAAAD5/wEAAAATAAAAAAD5/wAAAAATAAAAAAD6/wEAAAATAAAAAAD8//7/AAATAAAAAAD7//7/AAATAAAAAAD6//7/AAATAAAAAAD5//7/AAATAAAAAAD4//7/AAATAAAAAAD3//7/AAATAAAAAAD2//7/AAATAAAAAAD2////AAATAAAAAAD3////AAATAAAAAAD3/wAAAAATAAAAAAD4/wAAAAATAAAAAAD6////AAATAAAAAAD7////AAATAAAAAAD8////AAATAAAAAAD2/wAAAAATAAAAAAD2/wEAAAATAAAAAAD2/wIAAAATAAAAAAAHAP3/AAATAAAAAAAGAP3/AAATAAAAAAAFAP3/AAATAAAAAAAEAP3/AAATAAAAAAADAP3/AAATAAAAAAACAP3/AAATAAAAAAD8//3/AAATAAAAAAD7//3/AAATAAAAAAD6//3/AAATAAAAAAD5//3/AAATAAAAAAD4//3/AAATAAAAAAD3//3/AAATAAAAAAD2//3/AAATAAAAAAAIAP3/AAATAAAAAAD//wIAAAANAAAAAAD5/wIAAAATAAAAAAACAAIAAAATAAAAAAADAAIAAAATAAAAAAAEAAIAAAATAAAAAAAFAAIAAAATAAAAAAAGAAIAAAATAAAAAAAHAAIAAAATAAAAAAAIAAIAAAATAAAAAAD9//v/AAAIAAgAAAAAAP3/AAAIAAgAAAD9/wIAAAATAAAAAAD9/wAAAAATAAAAAAD9////AAATAAAAAAD9//7/AAATAAAAAAD9//3/AAATAAAAAAABAP3/AAATAAAAAAABAP7/AAATAAAAAAABAP//AAATAAAAAAABAAAAAAATAAAAAAABAAEAAAATAAAAAAABAAIAAAATAAAAAAA=")
+tile_set = ExtResource("3_x4qta")
+
+[node name="Right Road" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Right Road TileMap" type="TileMapLayer" parent="Right Road"]
+visible = false
+z_index = -1
+position = Vector2(100, 0)
+scale = Vector2(35, 35)
+tile_map_data = PackedByteArray("AAD//wAAAAATAAAAAAADAAEAAAATAAAAAAAEAAEAAAATAAAAAAAFAAEAAAATAAAAAAAGAAEAAAATAAAAAAAHAAEAAAATAAAAAAAIAAEAAAATAAAAAAAIAAAAAAATAAAAAAAIAP//AAATAAAAAAAIAP7/AAATAAAAAAAHAP7/AAATAAAAAAAGAP7/AAATAAAAAAAFAP7/AAATAAAAAAAEAP7/AAATAAAAAAADAP7/AAATAAAAAAABAP7/AAAFAAUAAAADAAAAAAATAAAAAAAEAAAAAAATAAAAAAAEAP//AAATAAAAAAAFAP//AAATAAAAAAAGAP//AAATAAAAAAAHAP//AAATAAAAAAD9/wIAAAATAAAAAAD9/wEAAAATAAAAAAD9/wAAAAATAAAAAAD8/wAAAAATAAAAAAD7/wEAAAATAAAAAAD7/wIAAAATAAAAAAD4/wIAAAATAAAAAAD4/wEAAAATAAAAAAD5/wEAAAATAAAAAAD5/wAAAAATAAAAAAD6/wEAAAATAAAAAAD9//7/AAATAAAAAAD8//7/AAATAAAAAAD7//7/AAATAAAAAAD6//7/AAATAAAAAAD5//7/AAATAAAAAAD4//7/AAATAAAAAAD4/wAAAAATAAAAAAD6////AAATAAAAAAD7////AAATAAAAAAD8////AAATAAAAAAAHAP3/AAATAAAAAAAGAP3/AAATAAAAAAAFAP3/AAATAAAAAAAEAP3/AAATAAAAAAADAP3/AAATAAAAAAABAP3/AAATAAAAAAD9//3/AAATAAAAAAD8//3/AAATAAAAAAD7//3/AAATAAAAAAD6//3/AAATAAAAAAD5//3/AAATAAAAAAD4//3/AAATAAAAAAAIAP3/AAATAAAAAAD//wIAAAABAAUAAAD5/wIAAAATAAAAAAABAAIAAAAJAAUAAAADAAIAAAATAAAAAAAEAAIAAAATAAAAAAAFAAIAAAATAAAAAAAGAAIAAAATAAAAAAAHAAIAAAATAAAAAAAIAAIAAAATAAAAAAD6/wIAAAATAAAAAAD8/wIAAAATAAAAAAD+/wIAAAATAAAAAAD//wEAAAATAAAAAAAAAAEAAAATAAAAAAAAAP3/AAATAAAAAAD+//3/AAATAAAAAAD4////AAATAAAAAAD6/wAAAAATAAAAAAD9////AAATAAAAAAD+////AAATAAAAAAD+//7/AAATAAAAAAAAAP//AAATAAAAAAAAAAAAAAATAAAAAAD+/wEAAAATAAAAAAD8/wEAAAATAAAAAAD+/wAAAAATAAAAAAD7/wAAAAATAAAAAAD5////AAATAAAAAAAHAAAAAAATAAAAAAAGAAAAAAATAAAAAAAFAAAAAAATAAAAAAAAAAIAAAATAAAAAAABAAAAAAANAAAAAAD///7/AAANAAUAAAD///z/AAANAAAAAAD9//z/AAATAAAAAAD8//z/AAATAAAAAAD7//z/AAATAAAAAAD6//z/AAATAAAAAAD5//z/AAATAAAAAAD4//z/AAATAAAAAAABAPz/AAATAAAAAAACAPz/AAATAAAAAAADAPz/AAATAAAAAAAEAPz/AAATAAAAAAAFAPz/AAATAAAAAAAGAPz/AAATAAAAAAAHAPz/AAATAAAAAAAIAPz/AAATAAAAAAA=")
+enabled = false
+tile_set = SubResource("TileSet_mg4mv")
+
+[node name="Left Road" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Left Road TileMap" type="TileMapLayer" parent="Left Road"]
+visible = false
+z_index = -1
+position = Vector2(100, 0)
+scale = Vector2(35, 35)
+tile_map_data = PackedByteArray("AAADAAEAAAATAAAAAAAEAAEAAAATAAAAAAAFAAEAAAATAAAAAAAGAAEAAAATAAAAAAAHAAEAAAATAAAAAAAIAAEAAAATAAAAAAAIAAAAAAATAAAAAAAIAP//AAATAAAAAAAIAP7/AAATAAAAAAAHAP7/AAATAAAAAAAGAP7/AAATAAAAAAAFAP7/AAATAAAAAAAEAP7/AAATAAAAAAADAP7/AAATAAAAAAADAAAAAAATAAAAAAAEAAAAAAATAAAAAAAEAP//AAATAAAAAAAFAP//AAATAAAAAAAGAP//AAATAAAAAAAHAP//AAATAAAAAAD7//7/AAATAAAAAAAHAP3/AAATAAAAAAAGAP3/AAATAAAAAAAFAP3/AAATAAAAAAAEAP3/AAATAAAAAAADAP3/AAATAAAAAAAIAP3/AAATAAAAAAADAAIAAAATAAAAAAAEAAIAAAATAAAAAAAFAAIAAAATAAAAAAAGAAIAAAATAAAAAAAHAAIAAAATAAAAAAAIAAIAAAATAAAAAAAHAAAAAAATAAAAAAAGAAAAAAATAAAAAAAFAAAAAAATAAAAAAADAPz/AAATAAAAAAAEAPz/AAATAAAAAAAFAPz/AAATAAAAAAAGAPz/AAATAAAAAAAHAPz/AAATAAAAAAAIAPz/AAATAAAAAAD4//z/AAATAAAAAAD4//3/AAATAAAAAAD4//7/AAATAAAAAAD4////AAATAAAAAAD4/wAAAAATAAAAAAD4/wEAAAATAAAAAAD4/wIAAAATAAAAAAD5/wIAAAATAAAAAAD5/wEAAAATAAAAAAD5/wAAAAATAAAAAAD5////AAATAAAAAAD5//7/AAATAAAAAAD5//3/AAATAAAAAAD5//z/AAATAAAAAAD6//7/AAATAAAAAAD6////AAATAAAAAAD6/wAAAAATAAAAAAD6/wEAAAATAAAAAAD6/wIAAAATAAAAAAD7//3/AAATAAAAAAD7//z/AAATAAAAAAD8//z/AAATAAAAAAD8//3/AAATAAAAAAD8//7/AAATAAAAAAD8////AAATAAAAAAD8/wAAAAATAAAAAAD8/wEAAAATAAAAAAD8/wIAAAATAAAAAAD7/wAAAAATAAAAAAD7////AAATAAAAAAD6//3/AAATAAAAAAD6//z/AAATAAAAAAD7/wEAAAATAAAAAAD7/wIAAAATAAAAAAD//wIAAAAFAAUAAAD9/wIAAAANAAUAAAD9/wAAAAANAAAAAAD9//7/AAABAAUAAAD///7/AAAJAAUAAAD///z/AAANAAAAAAD9//z/AAATAAAAAAD//wAAAAATAAAAAAABAAAAAAATAAAAAAABAAEAAAATAAAAAAABAAIAAAATAAAAAAABAP//AAATAAAAAAABAP7/AAATAAAAAAABAP3/AAATAAAAAAABAPz/AAATAAAAAAA=")
+enabled = false
+tile_set = SubResource("TileSet_mg4mv")
+
+[node name="EnemyCarArea" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-170, -3360)
+
+[node name="EnemyCarSprite" type="Sprite2D" parent="EnemyCarArea"]
+z_index = -1
+rotation = 3.14159
+scale = Vector2(10, 10)
+texture = ExtResource("4_ni0vs")
+
+[node name="EnemyCarCollider" type="CollisionPolygon2D" parent="EnemyCarArea"]
+unique_name_in_owner = true
+polygon = PackedVector2Array(-102, 64, -126, 64, -126, 80, -134, 80, -134, 88, -142, 88, -142, 104, -134, 104, -134, 112, -102, 112, -102, 120, -94, 120, -94, 144, -86, 144, -86, 152, -62, 152, -62, 160, 66, 160, 66, 152, 82, 152, 82, 144, 90, 144, 90, 120, 106, 120, 106, 112, 130, 112, 130, 104, 146, 104, 146, 88, 130, 88, 130, 80, 122, 80, 122, 64, 106, 64, 106, -136, 90, -136, 90, -144, 82, -144, 82, -152, 66, -152, 66, -160, -62, -160, -62, -152, -86, -152, -86, -144, -94, -144, -94, -136, -102, -136)
+
+[node name="Lose" type="Control" parent="."]
+unique_name_in_owner = true
+visible = false
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ColorRect" type="ColorRect" parent="Lose"]
+layout_mode = 0
+offset_left = -2306.0
+offset_top = -1295.0
+offset_right = -2213.8
+offset_bottom = -1243.2
+scale = Vector2(50, 50)
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="Lose"]
+modulate = Color(1, 1, 1, 0.360784)
+layout_mode = 0
+offset_left = -2302.0
+offset_top = -1281.0
+offset_right = 5698.0
+offset_bottom = 4312.0
+scale = Vector2(0.575, 0.46)
+texture = ExtResource("5_mg4mv")
+
+[node name="GameOverLabel" type="Label" parent="Lose"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -1352.0
+offset_top = -896.0
+offset_right = 1362.0
+offset_bottom = -214.0
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_fonts/font = ExtResource("8_u3gmq")
+theme_override_font_sizes/font_size = 500
+text = "Game Over"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MenuButton" type="Button" parent="Lose"]
+layout_mode = 0
+offset_left = -282.0
+offset_right = -229.0
+offset_bottom = 31.0
+scale = Vector2(10, 10)
+theme_override_fonts/font = ExtResource("8_u3gmq")
+text = "Menu"
+script = ExtResource("6_8gnqp")
+
+[node name="ScoreLabel" type="Label" parent="."]
+unique_name_in_owner = true
+offset_left = -632.0
+offset_top = -1278.0
+offset_right = -512.0
+offset_bottom = -1238.0
+scale = Vector2(10, 10)
+theme_override_fonts/font = ExtResource("8_u3gmq")
+theme_override_font_sizes/font_size = 25
+text = "Score: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="CopAreaRight" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(476, 6)
+
+[node name="CopColliderRight" type="CollisionShape2D" parent="CopAreaRight"]
+position = Vector2(1193.5, -1.4999)
+scale = Vector2(1, 14.08)
+shape = SubResource("RectangleShape2D_x4qta")
+
+[node name="CopAreaLeft" type="Area2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-635, -3)
+
+[node name="CopColliderLeft" type="CollisionShape2D" parent="CopAreaLeft"]
+position = Vector2(-1087, -1)
+scale = Vector2(1, 14.08)
+shape = SubResource("RectangleShape2D_x4qta")
+
+[connection signal="timeout" from="Car/CarArea/GameOverTimer" to="Car/CarArea" method="_on_game_over_timer_timeout"]
+[connection signal="area_entered" from="EnemyCarArea" to="Car/CarArea" method="_on_enemy_car_area_area_entered"]
+[connection signal="pressed" from="Lose/MenuButton" to="Lose/MenuButton" method="_on_pressed"]
+[connection signal="area_entered" from="CopAreaRight" to="Car/CarArea" method="_on_cop_area_right_area_entered"]
+[connection signal="area_entered" from="CopAreaLeft" to="Car/CarArea" method="_on_cop_area_left_area_entered"]
